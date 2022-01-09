@@ -1,0 +1,36 @@
+<ScreenManager>:
+    WindowOne:
+        name: 'window1'
+    WindowTwo:
+        name: 'window2'
+
+<WindowOne>:
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: (.4, 0.2)
+        pos_hint: {'center_x': 0.5,'center_y': 0.5}
+        
+        Label:
+            text: root.window1_label
+        Button:
+            text: 'Lets go to the second window'
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'window2'
+
+<WindowTwo>:
+    
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: (.4, 0.2)
+        pos_hint: {'center_x': 0.5,'center_y': 0.5}
+
+        TextInput:
+            id: txtinput  #ID allows us to reference the widget
+        Button:
+            text: 'Lets go to back window'
+            on_release:
+                #Lets call a function to change label
+                root.label_change()
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'window1'
